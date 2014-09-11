@@ -21,5 +21,15 @@ public class AIMaximum implements AI {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public int iWantTwo() {
+		return 2;
+	}
+	
+	public int iWantZero() {
+		return 0;
+	}
+	
 }
+
+
