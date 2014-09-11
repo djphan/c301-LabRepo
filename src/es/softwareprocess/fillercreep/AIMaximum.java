@@ -16,4 +16,10 @@ public class AIMaximum implements AI {
         return stuff[maxstuff];
     }
 
+	@Override
+	public void MasterAI() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
