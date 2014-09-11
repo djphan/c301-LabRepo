@@ -4,5 +4,7 @@ public interface AI {
     public FundamentalStuff evaluate(int playernumber, FillerCreep fillerCreep);
 
     public void MasterAI();
+    
+    public void ScrollAndDown();
 }
 

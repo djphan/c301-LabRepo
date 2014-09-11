@@ -22,6 +22,12 @@ public class AIMaximum implements AI {
 		
 	}
 	
+	@Override
+	public void ScrollAndDown(int power) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public int iWantTwo() {
 		return 2;
 	}
