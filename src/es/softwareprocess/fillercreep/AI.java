@@ -6,5 +6,7 @@ public interface AI {
     public void MasterAI();
     
     public void ScrollAndDown();
+
+	void ScrollAndDown(int power);
 }
 

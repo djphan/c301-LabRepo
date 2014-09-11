@@ -35,6 +35,12 @@ public class AIMaximum implements AI {
 	public int iWantZero() {
 		return 0;
 	}
+
+	@Override
+	public void ScrollAndDown() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 
