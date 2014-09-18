@@ -29,9 +29,9 @@ public class LonelyTwitterActivity extends Activity {
 	
 	private EditText bodyText;
 	
-	private ArrayList<Tweet> tweets;
+	private ArrayList<AbstractTweet> tweets;
 	
-	private ArrayAdapter<Tweet> tweetsViewAdapter;
+	private ArrayAdapter<AbstractTweet> tweetsViewAdapter;
 	
 	private ListView oldTweetsList;
 
@@ -58,16 +58,22 @@ public class LonelyTwitterActivity extends Activity {
 		super.onStart();
 		
 		tweets = dataManager.loadTweets();
-		tweetsViewAdapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);
+		tweetsViewAdapter = new ArrayAdapter<AbstractTweet>(this, R.layout.list_item, tweets);
 		oldTweetsList.setAdapter(tweetsViewAdapter);
 	}
 	
 	public void save(View v) {
 		
 		String text = bodyText.getText().toString();
-		Tweet tweet = new Tweet(new Date(), text);
 		
-		tweets.add(tweet);
+		if(text.contains("*")) {
+			StarredTweet stweet = new StarredTweet(new Date(), text);
+			tweets.add(stweet);
+		} else { 
+			Tweet tweet = new Tweet(new Date(), text);
+			tweets.add(tweet);
+		}
+
 		tweetsViewAdapter.notifyDataSetChanged();
 		
 		bodyText.setText("");

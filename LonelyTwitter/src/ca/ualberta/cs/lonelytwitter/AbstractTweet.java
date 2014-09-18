@@ -6,7 +6,6 @@ public abstract class AbstractTweet {
 	private Date tweetDate;
 	private String tweetBody;
 
-
 	public AbstractTweet(Date tweetDate, String tweetBody) {
 		this.tweetDate = tweetDate;
 		this.tweetBody = tweetBody;
@@ -28,7 +27,6 @@ public abstract class AbstractTweet {
 		this.tweetBody = tweetBody;
 	}
 	
-	public String toString() {
-		return tweetBody;
-	}
+	public abstract String toString();
+
 }
