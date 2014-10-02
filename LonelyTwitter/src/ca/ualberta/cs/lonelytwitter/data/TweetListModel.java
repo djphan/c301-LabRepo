@@ -1,6 +1,8 @@
 package ca.ualberta.cs.lonelytwitter.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import ca.ualberta.cs.lonelytwitter.AbstractTweet;
@@ -10,6 +12,7 @@ public class TweetListModel {
 	private List<AbstractTweet> tweets = new ArrayList<AbstractTweet>();
 
 	public TweetListModel() {
+		this.tweets = tweets;
 	}
 	
 	public TweetListModel(List<AbstractTweet> tweets) {
@@ -24,8 +27,12 @@ public class TweetListModel {
 	 *            Tweet to be appended to this list
 	 */
 	public void addTweet(AbstractTweet tweet) {
-		// TODO: Add only when it is not a duplicate
-		tweets.add(tweet);
+		if (tweets.contains(tweet)) {
+			throw new IllegalArgumentException("Tweet already exists in the list of tweets");
+		} else {
+			tweets.add(tweet);
+		}
+		
 	}
 
 	/**
@@ -35,7 +42,7 @@ public class TweetListModel {
 	 */
 	public int getCount() {
 		// TODO: return real count
-		return 0;
+		return this.tweets.size();
 	}
 
 	/**
@@ -47,7 +54,12 @@ public class TweetListModel {
 	 */
 	public boolean hasTweet(AbstractTweet tweet) {
 		// TODO: Find if the tweet already exists
-		return false;
+		if (tweets.contains(tweet)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	/**
@@ -59,6 +71,9 @@ public class TweetListModel {
 	 */
 	public void removeTweet(AbstractTweet tweet) {
 		// TODO: Remove tweet
+		if (tweets.contains(tweet)) {
+			tweets.remove(tweet);		
+		} else {}
 	}
 
 	/**
@@ -68,8 +83,16 @@ public class TweetListModel {
 	 * @return an array containing the tweets of the list.
 	 */
 	public AbstractTweet[] getTweets() {
-		// TODO: return sorted list of tweets
-		return null;
+		AbstractTweet[] intermediateArray = new AbstractTweet[this.tweets.size()];
+		
+		// TODO: return sorted list of tweets (by date)
+		Collections.sort(tweets, new Comparator<AbstractTweet>() {
+			public int compare (AbstractTweet tweet1, AbstractTweet tweet2) {
+				return tweet1.getTweetDate().compareTo(tweet2.getTweetDate());
+			}
+		});
+		return tweets.toArray(intermediateArray);
+		
 	}
 
 	/**
@@ -88,4 +111,6 @@ public class TweetListModel {
 	public void clear() {
 		tweets.clear();
 	}
+
+
 }
