@@ -36,5 +36,21 @@ public class LonelyTwitterActivityUITest extends
 	}
 	
 //TODO: Add your code here:
+	@UiThreadTest
+	public void testMakeTweet() {
+		// Set that the Listview Adapter gets a new tweet
+		LonelyTwitterActivity lta = getActivity();
+		int old_length = lta.getAdapter().getCount();
+		makeTweet("NaOH Test. Wub. Wub.");
+		ArrayAdapter<NormalTweetModel> aa = lta.getAdapter();
+		assertEquals(aa.getCount(), old_length+1);
+		
+		assertTrue(aa.getItem(aa.getCount()-1) instanceof NormalTweetModel);
+		
+		assertEquals(aa.getItem(aa.getCount()-1).getText(), "NaOH Test. Wub. Wub.");
+	}
+	
+	
+	
 			
 }
