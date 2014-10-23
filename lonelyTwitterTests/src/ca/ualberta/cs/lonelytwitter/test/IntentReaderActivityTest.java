@@ -77,9 +77,9 @@ public class IntentReaderActivityTest extends
     	intent.putExtra(IntentReaderActivity.MODE_OF_TRANSFORM_KEY, IntentReaderActivity.NORMAL);
     	setActivityIntent(intent);
 	    IntentReaderActivity ira = getActivity();
+	    
 	    TextView testview = ((TextView)ira.findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText));
     	ViewAsserts.assertOnScreen(ira.getWindow().getDecorView(), testview); 
-
     	
     }
        
