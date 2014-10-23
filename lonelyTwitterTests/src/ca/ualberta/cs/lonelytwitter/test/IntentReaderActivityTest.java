@@ -44,11 +44,43 @@ public class IntentReaderActivityTest extends
     	intent.putExtra(IntentReaderActivity.MODE_OF_TRANSFORM_KEY, IntentReaderActivity.DOUBLE);
     	
     	
-    setActivityIntent(intent);
+	    setActivityIntent(intent);
+	    IntentReaderActivity ira = getActivity();	    
+	    assertEquals(ira.getText(), "HARRO-WINHARRO-WIN");
+    }
     
-    IntentReaderActivity ira = getActivity();
+    public void testReverseText() {
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, "The empty environment is simply the process of computing 6!");
+    	intent.putExtra(IntentReaderActivity.MODE_OF_TRANSFORM_KEY, IntentReaderActivity.REVERSE);
+    	
+    	
+	    setActivityIntent(intent);
+	    IntentReaderActivity ira = getActivity();	    
+	    assertEquals(ira.getText(), "!6 gnitupmoc fo ssecorp eht ylpmis si tnemnorivne ytpme ehT");
+    	
+    }
     
-    assertEquals(ira.getText(), "HARRO-WINHARRO-WIN");
+    public void testDefaultMessage() {
+    	String string = null;
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, string);
+    	
+	    setActivityIntent(intent);
+	    IntentReaderActivity ira = getActivity();	    
+	    assertEquals(ira.getText(), "The Fault Text");
+    }
+    
+    public void testAssertView() {
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, "The empty environment is simply the process of computing 6!");
+    	intent.putExtra(IntentReaderActivity.MODE_OF_TRANSFORM_KEY, IntentReaderActivity.NORMAL);
+    	setActivityIntent(intent);
+	    IntentReaderActivity ira = getActivity();
+	    TextView testview = ((TextView)ira.findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText));
+    	ViewAsserts.assertOnScreen(ira.getWindow().getDecorView(), testview); 
+
+    	
     }
        
 }
