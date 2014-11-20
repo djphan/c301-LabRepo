@@ -1,7 +1,10 @@
 package ca.ualberta.cs.lonelytwitter;
 
-import java.util.Date;
 import java.util.List;
+
+import ca.ualberta.cs.lonelytweet.ImportantLonelyTweet;
+import ca.ualberta.cs.lonelytweet.LonelyTweet;
+import ca.ualberta.cs.lonelytweet.NormalLonelyTweet;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,11 +16,12 @@ import android.widget.Toast;
 
 public class LonelyTwitterActivity extends Activity {
 
+	private static final String SPECIAL_CHARACTER = "*";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 
-	private List<NormalLonelyTweet> tweets;
-	private ArrayAdapter<NormalLonelyTweet> adapter;
+	private List<LonelyTweet> tweets;
+	private ArrayAdapter<LonelyTweet> adapter;
 	private TweetsFileManager tweetsProvider;
 
 	@Override
@@ -35,27 +39,19 @@ public class LonelyTwitterActivity extends Activity {
 
 		tweetsProvider = new TweetsFileManager(this);
 		tweets = tweetsProvider.loadTweets();
-		adapter = new ArrayAdapter<NormalLonelyTweet>(this, R.layout.list_item,
+		adapter = new ArrayAdapter<LonelyTweet>(this, R.layout.list_item,
 				tweets);
 		oldTweetsList.setAdapter(adapter);
 	}
 
 	public void save(View v) {
-		String text = bodyText.getText().toString();
-
-		NormalLonelyTweet tweet;
-
-		tweet = new NormalLonelyTweet(text, new Date());
-
 //		String text = bodyText.getText().toString();
-//
-//		LonelyTweet tweet;
-//
-//		if (text.contains("*")) {
-//			tweet = new ImportantLonelyTweet(text);
-//		} else {
-//			tweet = new NormalLonelyTweet(text);
-//		}
+
+//		NormalLonelyTweet tweet;
+
+//		tweet = new NormalLonelyTweet(text);
+
+		LonelyTweet tweet = determineImportantTweet();
 		
 		if (tweet.isValid()) {
 			tweets.add(tweet);
@@ -66,6 +62,19 @@ public class LonelyTwitterActivity extends Activity {
 		} else {
 			Toast.makeText(this, "Invalid tweet", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	private LonelyTweet determineImportantTweet() {
+		String text = bodyText.getText().toString();
+
+		LonelyTweet tweet;
+
+		if (text.contains(SPECIAL_CHARACTER)) {
+			tweet = new ImportantLonelyTweet(text);
+		} else {
+			tweet = new NormalLonelyTweet(text);
+		}
+		return tweet;
 	}
 
 	public void clear(View v) {
