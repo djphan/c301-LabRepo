@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/summaryactivity2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Summary" >
+
+    <TextView
+        android:id="@+id/summaryactivity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Summary Page" />
+
+    <TextView
+        android:id="@+id/numTweetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/summaryactivity2"
+        android:layout_below="@+id/summaryactivity2"
+        android:text="Number of Tweets:" />
+
+    <TextView
+        android:id="@+id/avgTweetLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/numTweetText"
+        android:layout_below="@+id/numTweetText"
+        android:text="Average Length of Tweets:" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/numTweetText"
+        android:layout_alignParentRight="true"
+        android:text="99999999" />
+
+    <TextView
+        android:id="@+id/avgNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/number"
+        android:layout_below="@+id/number"
+        android:text="99999999" />
+
+</RelativeLayout>
