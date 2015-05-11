@@ -17,3 +17,7 @@ Lab5-3:
 	This project is adopted from: 
 	https://github.com/abramhindle/BogoPicGen and
 	https://eclass.srv.ualberta.ca/mod/resource/view.php?id=1136415
+
+	Project Fork'd from:
+	https://github.com/alisajedi/Lab5-3
+
